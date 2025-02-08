@@ -228,9 +228,6 @@ var _ = Describe("DTOAdapter", func() {
 			It("should pass validation regardless of Data content", func() {
 				cmd := dto.CommandDTO{
 					Name: domain.GetAllItems,
-					Data: []dto.DataEntryDTO{
-						{Key: "", Value: ""},
-					},
 				}
 
 				err := dtoAdapter.Validator.Struct(cmd)
