@@ -12,7 +12,7 @@
                 "ASSIGNMENT_CLIENT_BUILD_VERSION":"0.0.0",
                 "ASSIGNMENT_CLIENT_NAME":"assignment_client",
             },
-			"args": ["add", "1", "A"],
+			"args": ["getall"],
             "buildFlags": "-ldflags='-X main.Version=${ASSIGNMENT_CLIENT_BUILD_VERSION}'",
             "dlvFlags": ["--check-go-version=false"]
         },

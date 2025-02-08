@@ -183,7 +183,7 @@ func (sub *subscriber) processMessage(m amqp091.Delivery) {
 	cmd, err := sub.dtoAdapter.FromDTO(ctx, m.Body)
 	if err != nil {
 		// TODO: add to dead letter queue - for now return error
-		replyErr := fmt.Errorf("Bad request error: failed to unmarshal message")
+		replyErr := fmt.Errorf("Bad request error: failed to unmarshal message. %s", err.Error())
 		log.Warn(err)
 		sub.replyWithError(ctx, m, replyErr)
 		return
@@ -191,9 +191,8 @@ func (sub *subscriber) processMessage(m amqp091.Delivery) {
 
 	err = sub.cmdUsecase.HandleCommand(ctx, cmd)
 	if err != nil {
-		replyErr := fmt.Errorf("Internal server error: failed to handle command")
-		log.WithError(err).Error(replyErr.Error())
-		sub.replyWithError(ctx, m, replyErr)
+		log.Warn(err)
+		sub.replyWithError(ctx, m, err)
 		return
 	}
 

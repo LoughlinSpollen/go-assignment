@@ -61,9 +61,6 @@ func ValidateCommandType(fl validator.FieldLevel) bool {
 			}
 		}
 	case domain.GetAllItems:
-		if len(dto.Data) != 0 {
-			return false
-		}
 		return true
 	default:
 		return false

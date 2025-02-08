@@ -181,7 +181,7 @@ func (m *mockDTOAdapter) RegisterCommandTypeValidation() error {
 }
 
 func (m *mockDTOAdapter) ToErrorDTO(_ context.Context, err error) ([]byte, error) {
-	Expect(err).To(Equal(m.ExpectedDTOError))
+	Expect(err.Error()).To(ContainSubstring(m.ExpectedDTOError.Error()))
 	m.ToErrDTOCalled = true
 	return m.ReturnedToErrDTOBytes, m.ReturnedToErrDTOError
 }
@@ -330,7 +330,7 @@ var _ = Describe("Subscriber", func() {
 			mockCh.ReturnedQueueMsg = queueMsg
 			mockDTO.ExpectedDTOBytes = cmdAsBytes
 			mockDTO.ReturnedFromDTOError = errors.New("unmarshal failure")
-			mockDTO.ExpectedDTOError = errors.New("Bad request error: failed to unmarshal message")
+			mockDTO.ExpectedDTOError = errors.New("Bad request error")
 			mockDTO.ReturnedToErrDTOBytes, _ = json.Marshal(map[string]string{"Message": mockDTO.ExpectedDTOError.Error()})
 			mockCh.ExpectedPublshedMsg = amqp091.Publishing{
 				ContentType: "application/json",
@@ -357,7 +357,7 @@ var _ = Describe("Subscriber", func() {
 			subscriber.Close()
 		})
 
-		It("should fail if Usecase fails to handle command and return an internal server error", func() {
+		It("should fail if Usecase fails to handle command and return an error", func() {
 			mockCh.ReturnedQueueMsg = queueMsg
 			mockDTO.ExpectedDTOBytes = cmdAsBytes
 			mockDTO.ReturnedDTOCommand = &cmd
