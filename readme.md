@@ -96,8 +96,8 @@ make install
 ```
 
 ### `make build`
-Compiles the project and creates an two binary executables in the `client/build` and the `service/build` directories.
-This command can also be run from within the client and service sub-projects.
+Compiles the project and creates two binary executables in the `client/build` and the `service/build` directories.
+This command can also be run from within the client and service sub-directories.
 
 **Usage:**
 ```sh
@@ -106,7 +106,7 @@ make build
 
 ### `make test`
 Runs the unit the tests for the project.
-This command can also be run from within the client, service and shared_lib sub-projects.
+This command can also be run from within the client, service and shared_lib sub-directories.
 
 **Usage:**
 ```sh
