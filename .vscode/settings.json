@@ -1,0 +1,34 @@
+{
+	"terminal.integrated.env.osx": {
+        "ASSIGNMENT_CLIENT_BUILD_VERSION":"0.0.0",
+        "ASSIGNMENT_SERVICE_BUILD_VERSION":"0.0.0",
+        "ASSIGNMENT_SERVICE_NAME":"assignment_service",
+        "ASSIGNMENT_CLIENT_NAME":"assignment_client",
+	},
+    "go.testFlags": [
+        "-p"
+    ],	
+	"go.lintOnSave": "package",
+    "go.formatTool": "gofmt",
+    "go.useLanguageServer": true,
+    "go.testTimeout": "30s",
+    "go.testEnvVars": {
+        "GODEBUG": "gctrace=1"
+    },	
+	"go.coverOnSave": true,
+    "go.coverOnTestPackage": true,
+    "go.coverageOptions": "showUncoveredCodeOnly",
+    "go.coverageDecorator": {
+        "type": "gutter",
+        "coveredHighlightColor": "rgba(64,128,128,0.5)",
+        "uncoveredHighlightColor": "rgba(128,64,64,0.25)",
+        "coveredGutterStyle": "blockblue",
+        "uncoveredGutterStyle": "slashyellow"
+    },
+    "go.vetOnSave": "package",
+    "go.lintTool": "golangci-lint",
+    "go.lintFlags": [
+        "--fast"
+    ],
+    "makefile.configureOnOpen": false
+}

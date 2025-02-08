@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+			"name": "client",
+			"type": "go",
+			"request": "launch",
+            "mode": "auto",
+            "cwd": "${workspaceFolder}/client",
+			"program": "${workspaceRoot}/client/main.go",
+			"env": {
+                "ASSIGNMENT_CLIENT_BUILD_VERSION":"0.0.0",
+                "ASSIGNMENT_CLIENT_NAME":"assignment_client",
+            },
+			"args": ["add", "1", "A"],
+            "buildFlags": "-ldflags='-X main.Version=${ASSIGNMENT_CLIENT_BUILD_VERSION}'",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+        {
+			"name": "server",
+			"type": "go",
+			"request": "launch",
+            "mode": "auto",
+            "cwd": "${workspaceFolder}/service",
+			"program": "${workspaceRoot}/service/main.go",
+			"env": {
+                "ASSIGNMENT_SERVICE_BUILD_VERSION":"0.0.0",
+                "ASSIGNMENT_SERVICE_NAME":"assignment_service",
+            },
+            "buildFlags": "-ldflags='-X main.Version=${ASSIGNMENT_SERVICE_BUILD_VERSION}'",
+            "dlvFlags": ["--check-go-version=false"]
+        },
+        {
+            "name": "shared_lib_test",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "cwd": "${workspaceFolder}/shared_lib",
+            "program": "${workspaceRoot}/shared_lib/logs/log_test.go",
+            "showLog": true,
+            "dlvFlags": ["--check-go-version=false"]        
+        }
+    ]
+}
